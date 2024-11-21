@@ -3,7 +3,7 @@
 ## Exercícios - Aula 07
 
 ### Objetivo
-Este documento detalha os exercícios da Aula 02, com o objetivo de configurar um projeto React para usar Reactstrap e adicionar um componente de navegação.
+Este documento detalha os exercícios da Aula 07, com o objetivo de configurar um projeto React para usar Reactstrap e adicionar um componente de navegação.
 
 ---
 
