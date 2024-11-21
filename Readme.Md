@@ -109,4 +109,4 @@ Ao completar esses exercícios, aprendi a configurar um projeto React para usar 
 - **Adição de Componentes**:
   - A adição de componentes Reactstrap é simples e direta, mas certifique-se de importar corretamente os componentes necessários no seu arquivo React.
 
-  ![imagem navbar](confusion\public\navbar.png)
+  ![imagem navbar](navbar.png)
