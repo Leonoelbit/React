@@ -96,6 +96,39 @@ Este documento detalha os exercícios da Aula 02, com o objetivo de configurar u
      export default App;
      ```
 
+1. **Importações**:
+   ```javascript
+   import React from 'react';
+   import { Navbar, NavbarBrand } from 'reactstrap';
+   import 'bootstrap/dist/css/bootstrap.min.css';
+   ```
+   - `import React from 'react';`: Importa a biblioteca React, que é essencial para criar componentes em React.
+   - `import { Navbar, NavbarBrand } from 'reactstrap';`: Importa os componentes `Navbar` e `NavbarBrand` da biblioteca `reactstrap`, que é uma coleção de componentes React baseados no Bootstrap.
+   - `import 'bootstrap/dist/css/bootstrap.min.css';`: Importa o arquivo CSS do Bootstrap para estilizar os componentes.
+
+2. **Função App**:
+   ```javascript
+   function App() {
+     return (
+       <Navbar>
+         <NavbarBrand>Ristorante Con Fusion</NavbarBrand>
+       </Navbar>
+     );
+   }
+   ```
+   - `function App() { ... }`: Define um componente funcional chamado `App`.
+   - `return ( ... )`: Retorna o JSX que será renderizado na tela.
+   - `<Navbar>`: Componente de barra de navegação fornecido pelo `reactstrap`.
+   - `<NavbarBrand>Ristorante Con Fusion</NavbarBrand>`: Componente de marca da barra de navegação que exibe o texto "Ristorante Con Fusion".
+
+3. **Exportação**:
+   ```javascript
+   export default App;
+   ```
+   - `export default App;`: Exporta o componente `App` como padrão, permitindo que ele seja importado e usado em outras partes da aplicação.
+
+Em resumo, este código cria uma aplicação React simples que exibe uma barra de navegação com o nome "Ristorante Con Fusion" usando componentes do `reactstrap` e estilos do Bootstrap.
+
 ### Conclusão & Anotações
 
 Ao completar esses exercícios, aprendi a configurar um projeto React para usar Reactstrap e adicionar componentes de navegação. Aqui estão algumas anotações e situações encontradas:
