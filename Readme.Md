@@ -1,145 +1,113 @@
 ### UC13 - Executar os Processos de Codificação, Manutenção e Documentação de Aplicativos Computacionais para Desktop
 
-## Exercícios - Aula 07
+## Exercícios - Aula 09
 
 ### Objetivo
-Este documento detalha os exercícios da Aula 07, com o objetivo de configurar um projeto React para usar Reactstrap e adicionar um componente de navegação.
+Este documento detalha os exercícios da Aula 09, onde aprendemos a adicionar um novo componente ao aplicativo React, incorporarando dados a esse componente e atualizando o aplicativo para exibir sobre informações sobre um restaurante na página da web.
 
 ---
 
-## Exercício 1 - Configurando o Projeto React para Usar Reactstrap
+## Exercício 1 - Adicionando Componentes ao Aplicativo React
 
-**Prosseguimento**:
+```javascript
+import React, { useState } from 'react'; // Importa React e o hook useState do React
+import { Media } from 'reactstrap'; // Importa o componente Media do Reactstrap
 
-1. **Instalação das Dependências**:
-   - No terminal, navegue até o diretório do seu projeto React.
-   - Instale as dependências necessárias:
-     ```bash
-     npm install reactstrap react react-dom
-     npm install --save bootstrap
-     npm install react-popper @popperjs/core
-     ```
+// Define o componente funcional Menu
+const Menu = () => {
+  // Define o estado inicial com uma lista de pratos usando o hook useState
+  const [dishes] = useState([
+    {
+      id: 0,
+      name: 'Uthappizza',
+      image: 'assets/images/uthappizza.png',
+      category: 'mains',
+      label: 'Hot',
+      price: '4.99',
+      description: 'A unique combination of Indian Uthappam (pancake) and Italian pizza, topped with Cerignola olives, ripe vine cherry tomatoes, Vidalia onion, Guntur chillies and Buffalo Paneer.'
+    },
+    {
+      id: 1,
+      name: 'Zucchipakoda',
+      image: 'assets/images/zucchipakoda.png',
+      category: 'appetizer',
+      label: '',
+      price: '1.99',
+      description: 'Deep fried Zucchini coated with mildly spiced Chickpea flour batter accompanied with a sweet-tangy tamarind sauce'
+    },
+    {
+      id: 2,
+      name: 'Vadonut',
+      image: 'assets/images/vadonut.png',
+      category: 'appetizer',
+      label: 'New',
+      price: '1.99',
+      description: 'A quintessential ConFusion experience, is it a vada or is it a donut?'
+    },
+    {
+      id: 3,
+      name: 'ElaiCheese Cake',
+      image: 'assets/images/elaicheesecake.png',
+      category: 'dessert',
+      label: '',
+      price: '2.99',
+      description: 'A delectable, semi-sweet New York Style Cheese Cake, with Graham cracker crust and spiced with Indian cardamoms'
+    }
+  ]);
 
-2. **Configuração do Bootstrap**:
-   - Abra o arquivo `index.js` na pasta `src` e adicione a seguinte linha aos imports:
-     ```javascript
-     import 'bootstrap/dist/css/bootstrap.min.css';
-     ```
+  // Mapeia a lista de pratos para criar elementos JSX para cada prato
+  const menu = dishes.map((dish) => {
+    return (
+      <div key={dish.id} className="col-12 mt-5">
+        <Media tag="li">
+          <Media left middle>
+            <Media object src={dish.image} alt={dish.name} /> {/* Exibe a imagem do prato */}
+          </Media>
+          <Media body className="ml-5">
+            <Media heading>{dish.name}</Media> {/* Exibe o nome do prato */}
+            <p>{dish.description}</p> {/* Exibe a descrição do prato */}
+          </Media>
+        </Media>
+      </div>
+    );
+  });
 
-3. **Adição de uma Barra de Navegação**:
-   - Abra o arquivo `App.js` na pasta `src`, delete tudo entre `<header>` e atualize-o conforme abaixo:
-     ```javascript
-     import React from 'react';
-     import { Navbar, NavbarBrand } from 'reactstrap';
-     import 'bootstrap/dist/css/bootstrap.min.css';
+  // Retorna o JSX que representa o menu
+  return (
+    <div className="container">
+      <div className="row">
+        <Media list>
+          {menu} {/* Renderiza a lista de pratos */}
+        </Media>
+      </div>
+    </div>
+  );
+};
 
-     function App() {
-       return (
-         <div className="App">
-           <Navbar color="light" light expand="md">
-             <NavbarBrand href="/">Ristorante Con Fusion</NavbarBrand>
-           </Navbar>
-         </div>
-       );
-     }
+export default Menu; // Exporta o componente Menu como padrão
+```
 
-     export default App;
-     ```
+### Explicação do Código
 
-### Passo a Passo 1
+1. **Importações:**
+   - `React` e `useState` são importados do pacote `react`. `useState` é um hook que permite adicionar o estado ao componente funcional.
+   - `Media` é importado do `reactstrap`, uma biblioteca de componentes React baseada no Bootstrap.
 
-1. **Criação da Pasta do Projeto**:
-   - Crie uma nova pasta para o seu projeto:
-     ```bash
-     mkdir nome-do-projeto
-     cd nome-do-projeto
-     ```
+2. **Definição do Componente `Menu`:**
+   - O componente `Menu` é definido como uma função que utiliza o hook `useState` para armazenar uma lista de pratos (`dishes`).
+   - A lista de pratos (`dishes`) é inicializada com um array de objetos, onde cada objeto representa um prato com propriedades como `id`, `name`, `image`, `category`, `label`, `price` e `description`.
 
-2. **Inicialização do Projeto React**:
-   - Inicialize o projeto React:
-     ```bash
-     npx create-react-app nome-do-projeto
-     cd nome-do-projeto
-     ```
+3. **Mapeamento dos Pratos:**
+   - A função `map` é usada para iterar sobre a lista de pratos e retornar um elemento JSX para cada prato.
+   - Cada prato é renderizado dentro de um `div` com classes Bootstrap para layout (`col-12 mt-5`).
+   - O componente `Media` do `reactstrap` é usado para estruturar a exibição de cada prato, incluindo a imagem (`Media object`), o nome (`Media heading`) e a descrição (`p`).
 
-3. **Instalação das Dependências**:
-   - Instale as dependências necessárias:
-     ```bash
-     npm install reactstrap react react-dom
-     npm install --save bootstrap
-     npm install react-popper @popperjs/core
-     ```
+4. **Renderização do Menu:**
+   - O JSX retornado pelo componente `Menu` inclui um contêiner (`div` com classe `container`) e uma linha (`div` com classe `row`).
+   - Dentro da linha, a lista de pratos (`menu`) é renderizada usando o componente `Media list`.
 
-4. **Configuração do Bootstrap**:
-   - Abra o arquivo `index.js` na pasta `src` e adicione a seguinte linha aos imports:
-     ```javascript
-     import 'bootstrap/dist/css/bootstrap.min.css';
-     ```
-
-5. **Adição de uma Barra de Navegação**:
-   - Abra o arquivo `App.js` na pasta `src`, delete tudo entre `<header>` e atualize-o conforme abaixo:
-     ```javascript
-     import React from 'react';
-     import { Navbar, NavbarBrand } from 'reactstrap';
-     import 'bootstrap/dist/css/bootstrap.min.css';
-
-     function App() {
-       return (
-         <div className="App">
-           <Navbar color="light" light expand="md">
-             <NavbarBrand href="/">Ristorante Con Fusion</NavbarBrand>
-           </Navbar>
-         </div>
-       );
-     }
-
-     export default App;
-     ```
-
-1. **Importações**:
-   ```javascript
-   import React from 'react';
-   import { Navbar, NavbarBrand } from 'reactstrap';
-   import 'bootstrap/dist/css/bootstrap.min.css';
-   ```
-   - `import React from 'react';`: Importa a biblioteca React, que é essencial para criar componentes em React.
-   - `import { Navbar, NavbarBrand } from 'reactstrap';`: Importa os componentes `Navbar` e `NavbarBrand` da biblioteca `reactstrap`, que é uma coleção de componentes React baseados no Bootstrap.
-   - `import 'bootstrap/dist/css/bootstrap.min.css';`: Importa o arquivo CSS do Bootstrap para estilizar os componentes.
-
-2. **Função App**:
-   ```javascript
-   function App() {
-     return (
-       <Navbar>
-         <NavbarBrand>Ristorante Con Fusion</NavbarBrand>
-       </Navbar>
-     );
-   }
-   ```
-   - `function App() { ... }`: Define um componente funcional chamado `App`.
-   - `return ( ... )`: Retorna o JSX que será renderizado na tela.
-   - `<Navbar>`: Componente de barra de navegação fornecido pelo `reactstrap`.
-   - `<NavbarBrand>Ristorante Con Fusion</NavbarBrand>`: Componente de marca da barra de navegação que exibe o texto "Ristorante Con Fusion".
-
-3. **Exportação**:
-   ```javascript
-   export default App;
-   ```
-   - `export default App;`: Exporta o componente `App` como padrão, permitindo que ele seja importado e usado em outras partes da aplicação.
-
-Em resumo, este código cria uma aplicação React simples que exibe uma barra de navegação com o nome "Ristorante Con Fusion" usando componentes do `reactstrap` e estilos do Bootstrap.
-
-### Conclusão & Anotações
-
-Ao completar esses exercícios, aprendi a configurar um projeto React para usar Reactstrap e adicionar componentes de navegação. Aqui estão algumas anotações e situações encontradas:
-
-- **Erro ao Instalar Dependências**:
-  - Certifique-se de que todas as dependências estão corretamente instaladas. Um erro comum é esquecer de adicionar `--save` ao instalar pacotes, o que pode resultar em dependências não sendo salvas no `package.json`.
-
-- **Configuração do Bootstrap**:
-  - A importação correta do CSS do Bootstrap é crucial para garantir que os estilos sejam aplicados corretamente aos componentes Reactstrap.
-
-- **Adição de Componentes**:
-  - A adição de componentes Reactstrap é simples e direta, mas certifique-se de importar corretamente os componentes necessários no seu arquivo React.
-
-  ![imagem navbar](navbar.png)
+5. **Exportação do Componente:**
+   - O componente `Menu` é exportado como padrão para que possa ser importado e usado em outros arquivos, como `App.js`.
+   
+###  Conclusão
+   - Ao completar os exercícios da Aula 09, adquirimos habilidades essenciais para trabalhar com componentes em React. Aprendemos a adicionar um novo componente ao aplicativo, incorporar dados a esse componente e atualizar a interface do usuário. Este processo envolveu o uso de hooks como useState para gerenciar o estado e a biblioteca reactstrap para estilizar os componentes.
