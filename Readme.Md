@@ -111,3 +111,97 @@ export default Menu; // Exporta o componente Menu como padrão
    
 ###  Conclusão
    - Ao completar os exercícios da Aula 09, adquirimos habilidades essenciais para trabalhar com componentes em React. Aprendemos a adicionar um novo componente ao aplicativo, incorporar dados a esse componente e atualizar a interface do usuário. Este processo envolveu o uso de hooks como useState para gerenciar o estado e a biblioteca reactstrap para estilizar os componentes.
+
+---
+   
+##### Aula 10 - Documentação dos Exercícios
+
+#### Objetivo
+Este documento detalha os exercícios da Aula 10, onde aprendemos a adicionar novos componentes ao aplicativo React, incorporar dados a esses componentes e atualizar o aplicativo para exibir informações sobre um restaurante na página da web.
+
+---
+
+## MenuComponent.js
+
+### Breve Descrição
+O arquivo `MenuComponent.js` é responsável por renderizar a lista de pratos disponíveis no menu de um restaurante. Ele permite que os usuários visualizem os pratos e selecionem um prato específico para ver mais detalhes.
+
+### Imports Utilizados
+- `import React, { useState } from 'react';`: Importa o React e o hook `useState` para gerenciar o estado do componente.
+- `import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle } from 'reactstrap';`: Importa vários componentes do Reactstrap para criar cartões estilizados que exibem os pratos.
+
+### Componentes
+- **Componente Menu:**
+  - É um componente funcional que recebe `props` como argumento.
+  - Gerencia o estado do prato selecionado (`selectedDish`).
+  - Renderiza uma lista de pratos usando cartões (`Card`).
+  - Permite a seleção de um prato e exibe os detalhes do prato selecionado.
+
+### Funções
+- **Função `onDishSelect`:**
+  - Atualiza o estado `selectedDish` com o prato que foi clicado.
+  - Permite que o componente saiba qual prato foi selecionado, para que possa exibir seus detalhes.
+
+- **Função `renderDish`:**
+  - Verifica se um prato foi selecionado (`dish != null`).
+  - Se um prato foi selecionado, renderiza um `Card` com a imagem, nome e descrição do prato.
+  - Se nenhum prato foi selecionado, retorna um `div` vazio.
+  - Serve para exibir os detalhes do prato selecionado de forma condicional.
+
+- **`props.dishes.map`:**
+  - Mapeia os pratos recebidos via `props.dishes` para criar uma lista de `Card` para cada prato.
+  - Cada `Card` é clicável e chama a função `onDishSelect` ao ser clicado, permitindo a seleção do prato.
+  - Serve para gerar dinamicamente a lista de pratos a partir dos dados fornecidos via `props`.
+
+Essas funcionalidades tornam o componente `Menu` interativo e dinâmico, permitindo que os usuários explorem os pratos disponíveis e vejam mais detalhes sobre qualquer prato específico ao clicar nele.
+
+---
+
+## dishes.js
+
+### Breve Descrição
+O arquivo `dishes.js` serve para definir e exportar uma constante chamada `DISHES`, que é um array de objetos representando os pratos disponíveis no menu de um restaurante. Cada objeto no array contém informações detalhadas sobre um prato específico, incluindo seus comentários.
+
+### Propriedades
+Cada objeto no array `DISHES` possui as seguintes propriedades:
+- `id`: Identificador único do prato.
+- `name`: Nome do prato.
+- `image`: Caminho para a imagem do prato.
+- `category`: Categoria do prato (por exemplo, 'mains', 'appetizer', 'dessert').
+- `label`: Rótulo do prato (pode ser usado para destacar algo especial, como "Hot" ou "New").
+- `price`: Preço do prato.
+- `description`: Descrição detalhada do prato.
+- `comments`: Array de comentários sobre o prato, onde cada comentário é um objeto com as seguintes propriedades:
+  - `id`: Identificador único do comentário.
+  - `rating`: Avaliação do prato (de 1 a 5).
+  - `comment`: Texto do comentário.
+  - `author`: Autor do comentário.
+  - `date`: Data do comentário.
+
+### Tipo de Data Utilizado
+O tipo de data utilizado para a propriedade `date` nos comentários é uma string no formato ISO 8601, que inclui a data e a hora. Por exemplo: "2012-10-16T17:57:28.556094Z". Este formato é amplamente utilizado para representar datas e horas de forma padronizada e facilita a manipulação e exibição das informações de data e hora em diferentes fusos horários e contextos.
+
+---
+
+## App.js
+
+### Breve Descrição
+O arquivo `App.js` é o ponto de entrada principal do aplicativo React. Ele configura a estrutura básica da aplicação, incluindo a barra de navegação e o componente de menu que exibe os pratos disponíveis. Este arquivo é essencial para inicializar o estado da aplicação e renderizar os componentes principais na interface do usuário.
+
+### Funções e Componentes
+- **`const [dishes] = useState(DISHES);`:**
+  - Esta linha de código utiliza o hook `useState` do React para definir o estado inicial do componente `App`.
+  - `useState(DISHES)` inicializa o estado `dishes` com os dados dos pratos importados da constante `DISHES`.
+  - `dishes` é uma variável de estado que contém a lista de pratos e pode ser usada para passar esses dados para outros componentes.
+
+- **`<Menu dishes={dishes} />`:**
+  - Este JSX é responsável por renderizar o componente `Menu` e passar a lista de pratos (`dishes`) como uma propriedade (`props`).
+  - `dishes={dishes}` significa que a propriedade `dishes` do componente `Menu` será preenchida com os dados armazenados na variável de estado `dishes`.
+  - Dentro do componente `Menu`, os dados dos pratos podem ser acessados via `props.dishes`, permitindo que o componente `Menu` exiba a lista de pratos e interaja com esses dados conforme necessário.
+
+### Resumo
+O arquivo `App.js` configura a estrutura básica da aplicação, inicializa o estado com os dados dos pratos e renderiza a barra de navegação e o componente `Menu`. A variável de estado `dishes` armazena a lista de pratos, que é passada como propriedade para o componente `Menu`, permitindo que este exiba e interaja com os dados dos pratos.
+
+---
+
+![imagem navbar](foto.png)
